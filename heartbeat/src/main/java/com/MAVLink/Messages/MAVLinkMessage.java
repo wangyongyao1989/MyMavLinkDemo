@@ -19,6 +19,7 @@ public abstract class MAVLinkMessage implements Serializable {
     // this way is possible to pass a mavlink message through the Service-Acctivity interface
 
     public int sysid;
+
     public int compid;
     public int msgid;
     public boolean isMavlink2;
