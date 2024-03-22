@@ -16,16 +16,30 @@ file(GLOB src-files
         ${CMAKE_SOURCE_DIR}/*.cpp
         ${CMAKE_SOURCE_DIR}/Demo_heart/*.hpp
         ${CMAKE_SOURCE_DIR}/Demo_heart/*.h
+        ${CMAKE_SOURCE_DIR}/Demo_heart/gtestuite.hpp
         )
+
+
 
 add_library( # Sets the name of the library.
         ${libname}
 
         # Sets the library as a shared library.
-        SHARED
+        SHAR
 
         # Provides a relative path to your source file(s).
         ${src-files}
+        )
+
+set(native-libs
+        android
+        mediandk
+        EGL
+        GLESv3
+        OpenSLES
+        log
+        m
+        z
         )
 
 target_link_libraries( # Specifies the target library.
@@ -36,4 +50,5 @@ target_link_libraries( # Specifies the target library.
         ${log-lib}
         ${third-party-libs}
         ${native-libs}
+        ${GTEST_INCLUDE_DIRS}
         )

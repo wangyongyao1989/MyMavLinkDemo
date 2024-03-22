@@ -6,6 +6,7 @@
 #define MYMAVLINKDEMO_SENDRECEIVEMAV_H
 
 #include "message.hpp"
+
 class SendReceiveMav {
 public:
     void sendMavLinkMsg(mavlink::Message *msg);

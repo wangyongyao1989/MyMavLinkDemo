@@ -5,8 +5,8 @@
 
 
 typedef struct __mavlink_sysinfo_t {
- uint16_t voltageBattery; /*<  Battery voltage*/
- uint8_t sysState; /*<  System state.*/
+    uint16_t voltageBattery; /*<  Battery voltage*/
+    uint8_t sysState; /*<  System state.*/
 } mavlink_sysinfo_t;
 
 #define MAVLINK_MSG_ID_SysInfo_LEN 3
@@ -16,7 +16,6 @@ typedef struct __mavlink_sysinfo_t {
 
 #define MAVLINK_MSG_ID_SysInfo_CRC 172
 #define MAVLINK_MSG_ID_150_CRC 172
-
 
 
 #if MAVLINK_COMMAND_24BIT
@@ -48,15 +47,15 @@ typedef struct __mavlink_sysinfo_t {
  * @param voltageBattery  Battery voltage
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sysinfo_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg,
-                               uint8_t sysState, uint16_t voltageBattery)
-{
+static inline uint16_t
+mavlink_msg_sysinfo_pack(uint8_t system_id, uint8_t component_id, mavlink_message_t *msg,
+                         uint8_t sysState, uint16_t voltageBattery) {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SysInfo_LEN];
     _mav_put_uint16_t(buf, 0, voltageBattery);
     _mav_put_uint8_t(buf, 2, sysState);
 
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SysInfo_LEN);
+    memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SysInfo_LEN);
 #else
     mavlink_sysinfo_t packet;
     packet.voltageBattery = voltageBattery;
@@ -66,7 +65,8 @@ static inline uint16_t mavlink_msg_sysinfo_pack(uint8_t system_id, uint8_t compo
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_SysInfo;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SysInfo_MIN_LEN, MAVLINK_MSG_ID_SysInfo_LEN, MAVLINK_MSG_ID_SysInfo_CRC);
+    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SysInfo_MIN_LEN,
+                                    MAVLINK_MSG_ID_SysInfo_LEN, MAVLINK_MSG_ID_SysInfo_CRC);
 }
 
 /**
@@ -80,15 +80,16 @@ static inline uint16_t mavlink_msg_sysinfo_pack(uint8_t system_id, uint8_t compo
  * @param voltageBattery  Battery voltage
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sysinfo_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status, mavlink_message_t* msg,
-                               uint8_t sysState, uint16_t voltageBattery)
-{
+static inline uint16_t
+mavlink_msg_sysinfo_pack_status(uint8_t system_id, uint8_t component_id, mavlink_status_t *_status,
+                                mavlink_message_t *msg,
+                                uint8_t sysState, uint16_t voltageBattery) {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SysInfo_LEN];
     _mav_put_uint16_t(buf, 0, voltageBattery);
     _mav_put_uint8_t(buf, 2, sysState);
 
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SysInfo_LEN);
+    memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SysInfo_LEN);
 #else
     mavlink_sysinfo_t packet;
     packet.voltageBattery = voltageBattery;
@@ -101,7 +102,9 @@ static inline uint16_t mavlink_msg_sysinfo_pack_status(uint8_t system_id, uint8_
 #if MAVLINK_CRC_EXTRA
     return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SysInfo_MIN_LEN, MAVLINK_MSG_ID_SysInfo_LEN, MAVLINK_MSG_ID_SysInfo_CRC);
 #else
-    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status, MAVLINK_MSG_ID_SysInfo_MIN_LEN, MAVLINK_MSG_ID_SysInfo_LEN);
+    return mavlink_finalize_message_buffer(msg, system_id, component_id, _status,
+                                           MAVLINK_MSG_ID_SysInfo_MIN_LEN,
+                                           MAVLINK_MSG_ID_SysInfo_LEN);
 #endif
 }
 
@@ -115,16 +118,16 @@ static inline uint16_t mavlink_msg_sysinfo_pack_status(uint8_t system_id, uint8_
  * @param voltageBattery  Battery voltage
  * @return length of the message in bytes (excluding serial stream start sign)
  */
-static inline uint16_t mavlink_msg_sysinfo_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
-                               mavlink_message_t* msg,
-                                   uint8_t sysState,uint16_t voltageBattery)
-{
+static inline uint16_t
+mavlink_msg_sysinfo_pack_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+                              mavlink_message_t *msg,
+                              uint8_t sysState, uint16_t voltageBattery) {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     char buf[MAVLINK_MSG_ID_SysInfo_LEN];
     _mav_put_uint16_t(buf, 0, voltageBattery);
     _mav_put_uint8_t(buf, 2, sysState);
 
-        memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SysInfo_LEN);
+    memcpy(_MAV_PAYLOAD_NON_CONST(msg), buf, MAVLINK_MSG_ID_SysInfo_LEN);
 #else
     mavlink_sysinfo_t packet;
     packet.voltageBattery = voltageBattery;
@@ -134,7 +137,9 @@ static inline uint16_t mavlink_msg_sysinfo_pack_chan(uint8_t system_id, uint8_t 
 #endif
 
     msg->msgid = MAVLINK_MSG_ID_SysInfo;
-    return mavlink_finalize_message_chan(msg, system_id, component_id, chan, MAVLINK_MSG_ID_SysInfo_MIN_LEN, MAVLINK_MSG_ID_SysInfo_LEN, MAVLINK_MSG_ID_SysInfo_CRC);
+    return mavlink_finalize_message_chan(msg, system_id, component_id, chan,
+                                         MAVLINK_MSG_ID_SysInfo_MIN_LEN, MAVLINK_MSG_ID_SysInfo_LEN,
+                                         MAVLINK_MSG_ID_SysInfo_CRC);
 }
 
 /**
@@ -145,9 +150,11 @@ static inline uint16_t mavlink_msg_sysinfo_pack_chan(uint8_t system_id, uint8_t 
  * @param msg The MAVLink message to compress the data into
  * @param sysinfo C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sysinfo_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t* msg, const mavlink_sysinfo_t* sysinfo)
-{
-    return mavlink_msg_sysinfo_pack(system_id, component_id, msg, sysinfo->sysState, sysinfo->voltageBattery);
+static inline uint16_t
+mavlink_msg_sysinfo_encode(uint8_t system_id, uint8_t component_id, mavlink_message_t *msg,
+                           const mavlink_sysinfo_t *sysinfo) {
+    return mavlink_msg_sysinfo_pack(system_id, component_id, msg, sysinfo->sysState,
+                                    sysinfo->voltageBattery);
 }
 
 /**
@@ -159,9 +166,11 @@ static inline uint16_t mavlink_msg_sysinfo_encode(uint8_t system_id, uint8_t com
  * @param msg The MAVLink message to compress the data into
  * @param sysinfo C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sysinfo_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan, mavlink_message_t* msg, const mavlink_sysinfo_t* sysinfo)
-{
-    return mavlink_msg_sysinfo_pack_chan(system_id, component_id, chan, msg, sysinfo->sysState, sysinfo->voltageBattery);
+static inline uint16_t
+mavlink_msg_sysinfo_encode_chan(uint8_t system_id, uint8_t component_id, uint8_t chan,
+                                mavlink_message_t *msg, const mavlink_sysinfo_t *sysinfo) {
+    return mavlink_msg_sysinfo_pack_chan(system_id, component_id, chan, msg, sysinfo->sysState,
+                                         sysinfo->voltageBattery);
 }
 
 /**
@@ -173,9 +182,12 @@ static inline uint16_t mavlink_msg_sysinfo_encode_chan(uint8_t system_id, uint8_
  * @param msg The MAVLink message to compress the data into
  * @param sysinfo C-struct to read the message contents from
  */
-static inline uint16_t mavlink_msg_sysinfo_encode_status(uint8_t system_id, uint8_t component_id, mavlink_status_t* _status, mavlink_message_t* msg, const mavlink_sysinfo_t* sysinfo)
-{
-    return mavlink_msg_sysinfo_pack_status(system_id, component_id, _status, msg,  sysinfo->sysState, sysinfo->voltageBattery);
+static inline uint16_t mavlink_msg_sysinfo_encode_status(uint8_t system_id, uint8_t component_id,
+                                                         mavlink_status_t *_status,
+                                                         mavlink_message_t *msg,
+                                                         const mavlink_sysinfo_t *sysinfo) {
+    return mavlink_msg_sysinfo_pack_status(system_id, component_id, _status, msg, sysinfo->sysState,
+                                           sysinfo->voltageBattery);
 }
 
 /**
@@ -254,9 +266,8 @@ static inline void mavlink_msg_sysinfo_send_buf(mavlink_message_t *msgbuf, mavli
  *
  * @return  System state.
  */
-static inline uint8_t mavlink_msg_sysinfo_get_sysState(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint8_t(msg,  2);
+static inline uint8_t mavlink_msg_sysinfo_get_sysState(const mavlink_message_t *msg) {
+    return _MAV_RETURN_uint8_t(msg, 2);
 }
 
 /**
@@ -264,9 +275,8 @@ static inline uint8_t mavlink_msg_sysinfo_get_sysState(const mavlink_message_t* 
  *
  * @return  Battery voltage
  */
-static inline uint16_t mavlink_msg_sysinfo_get_voltageBattery(const mavlink_message_t* msg)
-{
-    return _MAV_RETURN_uint16_t(msg,  0);
+static inline uint16_t mavlink_msg_sysinfo_get_voltageBattery(const mavlink_message_t *msg) {
+    return _MAV_RETURN_uint16_t(msg, 0);
 }
 
 /**
@@ -275,14 +285,14 @@ static inline uint16_t mavlink_msg_sysinfo_get_voltageBattery(const mavlink_mess
  * @param msg The message to decode
  * @param sysinfo C-struct to decode the message contents into
  */
-static inline void mavlink_msg_sysinfo_decode(const mavlink_message_t* msg, mavlink_sysinfo_t* sysinfo)
-{
+static inline void
+mavlink_msg_sysinfo_decode(const mavlink_message_t *msg, mavlink_sysinfo_t *sysinfo) {
 #if MAVLINK_NEED_BYTE_SWAP || !MAVLINK_ALIGNED_FIELDS
     sysinfo->voltageBattery = mavlink_msg_sysinfo_get_voltageBattery(msg);
     sysinfo->sysState = mavlink_msg_sysinfo_get_sysState(msg);
 #else
-        uint8_t len = msg->len < MAVLINK_MSG_ID_SysInfo_LEN? msg->len : MAVLINK_MSG_ID_SysInfo_LEN;
-        memset(sysinfo, 0, MAVLINK_MSG_ID_SysInfo_LEN);
-    memcpy(sysinfo, _MAV_PAYLOAD(msg), len);
+    uint8_t len = msg->len < MAVLINK_MSG_ID_SysInfo_LEN? msg->len : MAVLINK_MSG_ID_SysInfo_LEN;
+    memset(sysinfo, 0, MAVLINK_MSG_ID_SysInfo_LEN);
+memcpy(sysinfo, _MAV_PAYLOAD(msg), len);
 #endif
 }

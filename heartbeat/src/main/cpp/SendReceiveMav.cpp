@@ -4,8 +4,6 @@
 
 #include "SendReceiveMav.h"
 
-
-
 void SendReceiveMav::sendMavLinkMsg(mavlink::Message *msg) {
 
 

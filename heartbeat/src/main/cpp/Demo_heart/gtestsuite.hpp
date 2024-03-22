@@ -15,31 +15,39 @@ using namespace mavlink;
 #endif
 
 
-TEST(Demo_heart, SysInfo)
+TEST(Demo_heart, SysInfo
+)
 {
-    mavlink::mavlink_message_t msg;
-    mavlink::MsgMap map1(msg);
-    mavlink::MsgMap map2(msg);
+mavlink::mavlink_message_t msg;
+mavlink::MsgMap map1(msg);
+mavlink::MsgMap map2(msg);
 
-    mavlink::Demo_heart::msg::SysInfo packet_in{};
-    packet_in.sysState = 139;
-    packet_in.voltageBattery = 17235;
+mavlink::Demo_heart::msg::SysInfo packet_in{};
+packet_in.
+sysState = 139;
+packet_in.
+voltageBattery = 17235;
 
-    mavlink::Demo_heart::msg::SysInfo packet1{};
-    mavlink::Demo_heart::msg::SysInfo packet2{};
+mavlink::Demo_heart::msg::SysInfo packet1{};
+mavlink::Demo_heart::msg::SysInfo packet2{};
 
-    packet1 = packet_in;
+packet1 = packet_in;
 
-    //std::cout << packet1.to_yaml() << std::endl;
+//std::cout << packet1.to_yaml() << std::endl;
 
-    packet1.serialize(map1);
+packet1.
+serialize(map1);
 
-    mavlink::mavlink_finalize_message(&msg, 1, 1, packet1.MIN_LENGTH, packet1.LENGTH, packet1.CRC_EXTRA);
+mavlink::mavlink_finalize_message(&msg,
+1, 1, packet1.MIN_LENGTH, packet1.LENGTH, packet1.CRC_EXTRA);
 
-    packet2.deserialize(map2);
+packet2.
+deserialize(map2);
 
-    EXPECT_EQ(packet1.sysState, packet2.sysState);
-    EXPECT_EQ(packet1.voltageBattery, packet2.voltageBattery);
+EXPECT_EQ(packet1
+.sysState, packet2.sysState);
+EXPECT_EQ(packet1
+.voltageBattery, packet2.voltageBattery);
 }
 
 #ifdef TEST_INTEROP
