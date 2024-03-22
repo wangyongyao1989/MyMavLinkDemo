@@ -11,6 +11,23 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        externalNativeBuild {
+
+            // For ndk-build, instead use the ndkBuild block.
+            cmake {
+
+                // Passes optional arguments to CMake.
+                arguments += listOf("-DANDROID_ARM_NEON=TRUE", "-DANDROID_TOOLCHAIN=clang")
+
+                // Sets a flag to enable format macro constants for the C compiler.
+                cFlags += listOf("-D__STDC_FORMAT_MACROS")
+
+                // Sets optional flags for the C++ compiler.
+                cppFlags += listOf("-fexceptions", "-frtti")
+            }
+        }
+
     }
 
     buildTypes {
@@ -26,6 +43,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+        }
+    }
+
 }
 
 dependencies {

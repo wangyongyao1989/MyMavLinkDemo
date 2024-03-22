@@ -64,9 +64,12 @@ static inline uint16_t mavlink_msg_sysinfo_pack(uint8_t system_id, uint8_t compo
 
         memcpy(_MAV_PAYLOAD_NON_CONST(msg), &packet, MAVLINK_MSG_ID_SysInfo_LEN);
 #endif
-
     msg->msgid = MAVLINK_MSG_ID_SysInfo;
-    return mavlink_finalize_message(msg, system_id, component_id, MAVLINK_MSG_ID_SysInfo_MIN_LEN, MAVLINK_MSG_ID_SysInfo_LEN, MAVLINK_MSG_ID_SysInfo_CRC);
+    return mavlink_finalize_message(msg, system_id
+                                    , component_id
+                                    , MAVLINK_MSG_ID_SysInfo_MIN_LEN
+                                    , MAVLINK_MSG_ID_SysInfo_LEN
+                                    , MAVLINK_MSG_ID_SysInfo_CRC);
 }
 
 /**
