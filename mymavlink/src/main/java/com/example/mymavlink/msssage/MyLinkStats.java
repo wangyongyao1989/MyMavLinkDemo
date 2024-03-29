@@ -4,14 +4,15 @@
  * java mavlink generator tool. It should not be modified by hand.
  */
 
-package com.MAVLink.Messages;
+package com.example.mymavlink.msssage;
 
-import com.MAVLink.MAVLinkPacket;
+
+import com.example.mymavlink.manger.MyLinkPacket;
 
 /**
  * Storage for MAVLink Packet and Error statistics
  */
-public class MAVLinkStats /* implements Serializable */{
+public class MyLinkStats /* implements Serializable */{
 
     public int receivedPacketCount; // total received packet count for all sources
 
@@ -24,11 +25,11 @@ public class MAVLinkStats /* implements Serializable */{
     // stats are nil for a system id until a packet has been received from a system
     public SystemStat[] systemStats; // stats for each system that is known
 
-    public MAVLinkStats() {
+    public MyLinkStats() {
         this(false);
     }
 
-    public MAVLinkStats(boolean ignoreRadioPackets) {
+    public MyLinkStats(boolean ignoreRadioPackets) {
         this.ignoreRadioPackets = ignoreRadioPackets;
         resetStats();
     }
@@ -39,7 +40,7 @@ public class MAVLinkStats /* implements Serializable */{
      * 
      * @param packet Packet that should be checked
      */
-    public void newPacket(MAVLinkPacket packet) {
+    public void newPacket(MyLinkPacket packet) {
 //        if (ignoreRadioPackets && packet.msgid == msg_radio_status.MAVLINK_MSG_ID_RADIO_STATUS) {
 //            return;
 //        }
@@ -80,7 +81,7 @@ public class MAVLinkStats /* implements Serializable */{
             resetStats();
         }
 
-        public int newPacket(MAVLinkPacket packet) {
+        public int newPacket(MyLinkPacket packet) {
             int newLostPackets = 0;
             if (componentStats[packet.compid] == null) {
                 // only allocate stats for systems that exist on the network
@@ -111,7 +112,7 @@ public class MAVLinkStats /* implements Serializable */{
             resetStats();
         }
 
-        public int newPacket(MAVLinkPacket packet) {
+        public int newPacket(MyLinkPacket packet) {
             int newLostPackets = 0;
             if (hasLostPackets(packet)) {
                 newLostPackets = updateLostPacketCount(packet);
@@ -128,7 +129,7 @@ public class MAVLinkStats /* implements Serializable */{
             receivedPacketCount = 0;
         }
 
-        private int updateLostPacketCount(MAVLinkPacket packet) {
+        private int updateLostPacketCount(MyLinkPacket packet) {
             int lostPackets;
             if (packet.seq - lastPacketSeq < 0) {
                 lostPackets = (packet.seq - lastPacketSeq) + 255;
@@ -144,7 +145,7 @@ public class MAVLinkStats /* implements Serializable */{
             lastPacketSeq = (lastSeq + 1) & 0xFF;
         }
 
-        private boolean hasLostPackets(MAVLinkPacket packet) {
+        private boolean hasLostPackets(MyLinkPacket packet) {
             return lastPacketSeq >=  0 && packet.seq != lastPacketSeq;
         }
     }

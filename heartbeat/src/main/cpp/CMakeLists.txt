@@ -25,7 +25,7 @@ add_library( # Sets the name of the library.
         ${libname}
 
         # Sets the library as a shared library.
-        SHAR
+#        SHAR
 
         # Provides a relative path to your source file(s).
         ${src-files}

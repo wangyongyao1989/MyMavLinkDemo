@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "MyMavLinkDemo"
 include(":app")
 include(":heartbeat")
+include(":mymavlink")
