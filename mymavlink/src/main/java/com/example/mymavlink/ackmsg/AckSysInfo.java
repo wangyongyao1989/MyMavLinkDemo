@@ -4,6 +4,10 @@ import com.example.mymavlink.manger.MyLinkPacket;
 
 public class AckSysInfo extends BaseAckMsg {
     public static final int MAVLINK_MSG_ID_SysInfo = 150;
+    public static final int DEST_ID_SysInfo = 3;
+    public static final int SRC_ID_SysInfo = 2;
+
+
     public static final int MAVLINK_MSG_LENGTH = 3;
     private static final long serialVersionUID = MAVLINK_MSG_ID_SysInfo;
 
@@ -14,9 +18,11 @@ public class AckSysInfo extends BaseAckMsg {
     }
 
     public AckSysInfo(MyLinkPacket myLinkPacket) {
-        this.msgid = MAVLINK_MSG_ID_SysInfo;
         this.sysid = myLinkPacket.sysid;
+        desId = myLinkPacket.destId;
+        srcId = myLinkPacket.srcId;
         this.compid = myLinkPacket.compid;
+        this.msgid = MAVLINK_MSG_ID_SysInfo;
         unpack(myLinkPacket);
     }
 

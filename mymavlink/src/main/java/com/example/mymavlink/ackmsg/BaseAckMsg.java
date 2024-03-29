@@ -13,8 +13,8 @@ import java.io.Serializable;
 public abstract class BaseAckMsg implements Serializable {
     private static final long serialVersionUID = -7754622750478538539L;
     public int sysid;
-    private int desId;
-    private int srcId;
+    public int desId;
+    public int srcId;
     public int compid;
     public int msgid;
 
